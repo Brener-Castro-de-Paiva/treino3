@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Training - Portal de Agentes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<!-- MENU / NAV -->
+<header>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#artigo">Ameaças</a></li>
+            <li><a href="#portal">Portal</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- SEÇÃO PARALLAX -->
+<main>
+    <article id="artigo">
+        <h2>Principais Ameaças Cibernéticas</h2>
+        <p>
+            O cenário digital está cada vez mais hostil. Conhecer as ameaças é o primeiro passo para se defender.
+        </p>
+
+        <ul class="ameacas">
+            <li><strong>Pishing</strong> - emails e sites falsos que roubam credenciais.</li>
+
+            <li><strong>Ransomware</strong> - sequestra seus dados e exige resgate.</li>
+
+            <li><strong>DDoS</strong>-Sobrecarga de servidores com tráfego massivo.</li>
+
+            <li><strong>Engenharia Social</strong>- manipulação humana para obter acesso</li>
+
+            <li><strong>Zero-Day</strong>- falha exploradas antes da correção</li>
+        </ul>
+
+        <p>
+            Use sempre senhas fortes, autenticação em dois fatores e mantenha seus sistemas autalizados.
+        </p>
+    </article>
+
+    <!-- PORTAL ESCALÁVEL -->
+     <section id="portal">
+        <h2>Portal de Registro de Agentes</h2>
+        <p>REgistre-se para receber alertas de segurança (simulação de banco de dados).</p>
+
+        <form id="form=portal">
+            <label for="codinome">Codinome:</label>
+            <input type="text" id="codinome" name="codinome" placeholder="Ex: Neo_007" required>
+            <button type="sumit">REgistrar Agente</button>
+        </form>
+
+        <div id="resposta"></div>
+        <h3>Agentes Ativos:</h3>
+        <ul id="lista-agentes"></ul>
+     </section>
+</main>
+
+<!-- RODAPÉ -->
+ <footer>
+    <p>&copy; 2026 - CyberSec Training | Sistema seguro</p>
+ </footer>
+
+    <script>src="script.js"</script>
+
+</body>
+</html>
