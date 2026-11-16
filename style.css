@@ -1,0 +1,240 @@
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #0a0e14;
+    color: #c9d1d9;
+    line-height: 1.6;
+}
+
+/* ==== MENU ===== */
+header{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    background: rgba(0,0,0, 0.85);
+    border-bottom: 1px solid #00ff9d;
+    z-index:100;
+}
+
+nav ul{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 15px;
+    gap: 40px;
+}
+
+nav a{
+    color: #00ff9d;
+    text-decoration:none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+nav a:hover{
+    color: #fff;
+    text-shadow: 0 0 10px #00ff9d;
+}
+
+/* ===== PARALLAX ======= */
+.parallax{
+    height: 100vh;
+    background-image: url(img/mr-robot-rami.webp);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #052a1c;
+    text-align: center;
+    text-shadow: 0 0 15px #00ff9d;
+    position: relative;
+}
+
+.parallax::before{
+    content:"";
+    position: relative;
+    z-index: 1;
+}
+
+.parallax h1{
+    font-size: 4rem;
+    letter-spacing: 8px;
+}
+
+.parallax h1 span{
+    color: #fff;
+}
+
+.terminal{
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.cursor{
+    animation: piscar 1s infinite;
+}
+
+@keyframes piscar{
+    0%, 50% {opacity: 1;}
+    51%, 100% {opacity: 0;}
+}
+
+/* ===== MAIN/ARTICLE =======*/
+main{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+article{
+    background: #0d1117;
+    border: 1px solid #00ff9d;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 244, 157, 0.2);
+    margin-bottom: 40px;
+}
+
+article h2{
+    margin-bottom: 15px;
+    color: #00ff9d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.ameacas{
+    list-style: none;
+    margin: 20px 0;
+}
+
+.ameacas li{
+    padding: 10px;
+    margin: 8px 0;
+    background: #161b22;
+    border-left: 4px solid #00ff9d;
+    border-radius: 4px;
+}
+
+.ameacas strong{
+    color: #00ff9d;
+}
+
+
+/* ==== PORTAL ===== */
+
+#portal{
+    background: #0d1117;
+    border: 1px solid #00ff9d;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+}
+
+
+#portal h2{
+    color: #00ff9d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+#form-portal{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+#form-portal label{
+    width: 100%;
+    color: #00ff9d;
+}
+
+#form-portal input{
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    color: #c9d1d9;
+    font-family: inherit;
+}
+
+#form-portal input:focus{
+    outline: none;
+    border-color: #00ff9d;
+    box-shadow: 0 0 8px #00ff9d;
+}
+
+#form-portal button{
+    padding: 12px 24px;
+    background: #00ff9d00;
+    color: #0a0e14;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: inherit;
+}
+
+#form-portal button:hover{
+    background: #fff;
+    box-shadow: 0 0 15px #00ff9d;
+}
+
+#resposta{
+    margin: 10px 0;
+    font-weight: bold;
+    color: #00ff9d;
+}
+
+#lista-agentes{
+    list-style: none;
+    margin-top: 10px;
+}
+
+#lista-agentes li{
+    padding: 10px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    margin: 6px 0;
+    border-radius: 4px;
+    color: #00ff9d;
+}
+
+#lista-agentes li::before{
+    content:">";
+    color: #ff0055;
+}
+
+
+/* ==== FOOTER====== */
+footer{
+    text-align: center;
+    padding: 20px;
+    background: #000;
+    color: #00ff9d;
+    border-top: 1px solid #00ff9d;
+    letter-spacing: 2px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 600px) {
+    .parallax h1 { font-size: 2.2rem; letter-spacing: 4px; }
+    nav ul { gap: 15px; }
+}
