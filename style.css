@@ -1,4 +1,6 @@
-/* Reset */
+/* ============================================
+   RESET
+   ============================================ */
 *{
     margin: 0;
     padding: 0;
@@ -12,15 +14,17 @@ body{
     line-height: 1.6;
 }
 
-/* ==== MENU ===== */
+/* ============================================
+   MENU / NAV
+   ============================================ */
 header{
     position: fixed;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
-    background: rgba(0,0,0, 0.85);
+    background: rgba(0, 0, 0, 0.85);
     border-bottom: 1px solid #00ff9d;
-    z-index:100;
+    z-index: 100;
 }
 
 nav ul{
@@ -33,7 +37,7 @@ nav ul{
 
 nav a{
     color: #00ff9d;
-    text-decoration:none;
+    text-decoration: none;
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -45,10 +49,12 @@ nav a:hover{
     text-shadow: 0 0 10px #00ff9d;
 }
 
-/* ===== PARALLAX ======= */
+/* ============================================
+   PARALLAX
+   ============================================ */
 .parallax{
     height: 100vh;
-    background-image: url(img/mr-robot-rami.webp);
+    background-image: url('img/mr-robot-rami.webp');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -56,14 +62,24 @@ nav a:hover{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #052a1c;
+    color: #00ff9d;
     text-align: center;
     text-shadow: 0 0 15px #00ff9d;
     position: relative;
 }
 
+/* Overlay escuro sobre a imagem */
 .parallax::before{
-    content:"";
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+/* Texto acima do overlay */
+.parallax h1,
+.parallax .terminal{
     position: relative;
     z-index: 1;
 }
@@ -87,11 +103,13 @@ nav a:hover{
 }
 
 @keyframes piscar{
-    0%, 50% {opacity: 1;}
-    51%, 100% {opacity: 0;}
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
-/* ===== MAIN/ARTICLE =======*/
+/* ============================================
+   MAIN / ARTICLE
+   ============================================ */
 main{
     max-width: 900px;
     margin: 0 auto;
@@ -103,7 +121,7 @@ article{
     border: 1px solid #00ff9d;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 244, 157, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
     margin-bottom: 40px;
 }
 
@@ -131,9 +149,9 @@ article h2{
     color: #00ff9d;
 }
 
-
-/* ==== PORTAL ===== */
-
+/* ============================================
+   PORTAL
+   ============================================ */
 #portal{
     background: #0d1117;
     border: 1px solid #00ff9d;
@@ -141,7 +159,6 @@ article h2{
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
 }
-
 
 #portal h2{
     color: #00ff9d;
@@ -181,7 +198,7 @@ article h2{
 
 #form-portal button{
     padding: 12px 24px;
-    background: #00ff9d00;
+    background: #00ff9d;
     color: #0a0e14;
     border: none;
     border-radius: 4px;
@@ -218,12 +235,13 @@ article h2{
 }
 
 #lista-agentes li::before{
-    content:">";
+    content: "> ";
     color: #ff0055;
 }
 
-
-/* ==== FOOTER====== */
+/* ============================================
+   FOOTER
+   ============================================ */
 footer{
     text-align: center;
     padding: 20px;
@@ -233,8 +251,15 @@ footer{
     letter-spacing: 2px;
 }
 
-/* ===== RESPONSIVO ===== */
-@media (max-width: 600px) {
-    .parallax h1 { font-size: 2.2rem; letter-spacing: 4px; }
-    nav ul { gap: 15px; }
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+@media (max-width: 600px){
+    .parallax h1{
+        font-size: 2.2rem;
+        letter-spacing: 4px;
+    }
+    nav ul{
+        gap: 15px;
+    }
 }
