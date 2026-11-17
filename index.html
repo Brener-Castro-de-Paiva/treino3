@@ -73,7 +73,23 @@
     <p>&copy; 2026 - CyberSec Training | Sistema seguro</p>
  </footer>
 
-    <script src="script.js"></script>
+    <!-- SDK do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- TESTE: JavaScript direto no HTML -->
+    <script>
+        // Cole TODO o conteúdo do seu script.js aqui dentro!
+        console.log("Script carregou!"); 
+        
+        const SUPABASE_URL = 'https://jmxtodoxnwoebsjtluld.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_YDupmBrVEm6i00kIkodNqA_gfNxOKq_';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        // ... (cole o resto das suas funções carregarAgentes, salvarAgente, etc.)
+    </script>
+
+</body>
+</html>
 
 </body>
 </html>

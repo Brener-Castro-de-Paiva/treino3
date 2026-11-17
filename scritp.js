@@ -1,30 +1,43 @@
-// ============================================
-// Simulação de "banco de dados" com localStorage
-// Para integrar banco real: substituir as funções
-// salvarAgente / carregarAgentes por chamadas fetch()
-// ============================================
+// 1. Configurar o cliente Supabase
+const SUPABASE_URL = 'https://jmxtodoxnwoebsjtluld.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_YDupmBrVEm6i00kIkodNqA_gfNxOKq_';
 
-const CHAVE = "agentes_cyber";
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-function carregarAgentes() {
-    const dados = localStorage.getItem(CHAVE);
-    return dados ? JSON.parse(dados) : [];
+// 2. Função para carregar os agentes do banco
+async function carregarAgentes() {
+    const { data, error } = await _supabase
+        .from('agentes')
+        .select('codinome')
+        .order('registrado_em', { ascending: false });
+
+    if (error) {
+        console.error('Erro ao carregar:', error);
+        return [];
+    }
+    
+    // Transforma a lista de objetos em uma lista de strings (só os codinomes)
+    return data.map(a => a.codinome);
 }
 
-function salvarAgente(codinome) {
-    const agentes = carregarAgentes();
-    agentes.push({
-        codinome: codinome,
-        registrado_em: new Date().toISOString()
-    });
-    localStorage.setItem(CHAVE, JSON.stringify(agentes));
+// 3. Função para salvar um novo agente
+async function salvarAgente(codinome) {
+    const { error } = await _supabase
+        .from('agentes')
+        .insert([{ codinome: codinome }]);
+
+    if (error) {
+        console.error('Erro ao salvar:', error);
+        throw error; // Repassa o erro para o formulário avisar o usuário
+    }
 }
 
-function renderizarLista() {
+// 4. Renderizar a lista na tela
+async function renderizarLista() {
     const lista = document.getElementById("lista-agentes");
-    lista.innerHTML = "";
-
-    const agentes = carregarAgentes();
+    lista.innerHTML = ""; // Limpa a lista atual
+    
+    const agentes = await carregarAgentes();
 
     if (agentes.length === 0) {
         const li = document.createElement("li");
@@ -33,18 +46,19 @@ function renderizarLista() {
         return;
     }
 
-    agentes.forEach(function (a) {
+    agentes.forEach(function (codinome) {
         const li = document.createElement("li");
-        li.textContent = a.codinome;
+        li.textContent = codinome;
         lista.appendChild(li);
     });
 }
 
-// ===== EVENTO DE ENVIO DO FORM =====
-document.getElementById("form-portal").addEventListener("submit", function (e) {
+// 5. Evento de envio do formulário
+document.getElementById("form-portal").addEventListener("submit", async function (e) {
     e.preventDefault();
-
-    const codinome = document.getElementById("codinome").value.trim();
+    
+    const input = document.getElementById("codinome");
+    const codinome = input.value.trim();
     const resposta = document.getElementById("resposta");
 
     if (codinome === "") {
@@ -53,26 +67,36 @@ document.getElementById("form-portal").addEventListener("submit", function (e) {
         return;
     }
 
-    // Verificação de duplicata
-    const agentes = carregarAgentes();
-    const existe = agentes.some(function (a) {
-        return a.codinome.toLowerCase() === codinome.toLowerCase();
-    });
-
-    if (existe) {
-        resposta.textContent = "⚠️ Codinome já registrado!";
+    try {
+        // Tenta salvar no banco
+        await salvarAgente(codinome);
+        
+        resposta.textContent = "✅ Agente '" + codinome + "' registrado com sucesso!";
+        resposta.style.color = "#00ff9d";
+        input.value = "";
+        
+        // Atualiza a lista na tela
+        await renderizarLista();
+        
+    } catch (err) {
+        resposta.textContent = "❌ Erro ao registrar. Tente novamente.";
         resposta.style.color = "#ff0055";
-        return;
     }
-
-    salvarAgente(codinome);
-
-    resposta.textContent = "✅ Agente '" + codinome + "' registrado com sucesso!";
-    resposta.style.color = "#00ff9d";
-
-    document.getElementById("codinome").value = "";
-    renderizarLista();
 });
 
-// ===== INICIALIZA =====
+// 6. Inicializar a lista quando a página abrir
 renderizarLista();
+
+async function salvarAgente(codinome) {
+    const { data, error } = await _supabase
+        .from('agentes')
+        .insert([{ codinome: codinome }]);
+
+    // ADICIONE ESSA LINHA ABAIXO PARA VER O QUE O BANCO RESPONDE:
+    console.log("Resposta do Supabase:", { data, error }); 
+
+    if (error) {
+        console.error('Erro ao salvar:', error);
+        throw error;
+    }
+}
